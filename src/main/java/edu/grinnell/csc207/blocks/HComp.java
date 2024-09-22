@@ -31,7 +31,9 @@ public class HComp implements AsciiBlock {
    * Build a horizontal composition of two blocks.
    *
    * @param alignment The way in which the blocks should be aligned.
+   *
    * @param leftBlock The block on the left.
+   *
    * @param rightBlock The block on the right.
    */
   public HComp(VAlignment alignment, AsciiBlock leftBlock, AsciiBlock rightBlock) {
@@ -43,6 +45,7 @@ public class HComp implements AsciiBlock {
    * Build a horizontal composition of multiple blocks.
    *
    * @param alignment The alignment of the blocks.
+   *
    * @param blocksToCompose The blocks we will be composing.
    */
   public HComp(VAlignment alignment, AsciiBlock[] blocksToCompose) {
@@ -76,14 +79,40 @@ public class HComp implements AsciiBlock {
     } // switch
   } // row(int)
 
+  /**
+   * Get the aligned row.
+   *
+   * @param i The row number.
+   *
+   * @param alignment The alignment.
+   *
+   * @return The aligned row.
+   *
+   * @throws Exception if i is outside the range of valid rows.
+   */
   private String getAlignedRow(int i, VAlignment alignment) throws Exception {
     StringBuilder rowBuilder = new StringBuilder();
+
     for (AsciiBlock block : this.blocks) {
       rowBuilder.append(applyAlignment(i, alignment, block));
     } // for
-    return rowBuilder.toString();
-  }
 
+    return rowBuilder.toString();
+  } // getAlignedRow(int, VAlignment)
+
+  /**
+   * Apply the alignment to the block.
+   *
+   * @param i The row number.
+   *
+   * @param alignment The alignment.
+   *
+   * @param block The block to align.
+   *
+   * @return The aligned row of a block.
+   *
+   * @throws Exception if i is outside the range of valid rows.
+   */
   private String applyAlignment(int i, VAlignment alignment, AsciiBlock block) throws Exception {
     switch (alignment) {
       case TOP:
@@ -95,20 +124,24 @@ public class HComp implements AsciiBlock {
       default:
         throw new Exception("Invalid alignment");
     } // switch
-  }
+  } // applyAlignment(int, VAlignment, AsciiBlock)
 
   /**
-   * Align two blocks to the top.
+   * Align a block to the top.
    *
    * @param i The row number.
-   * @param left The left block.
-   * @param right The right block.
-   * @return
+   *
+   * @param block The block to align.
+   *
+   * @return The top aligned row.
+   *
+   * @throws Exception if i is outside the range of valid rows.
    */
   private String topAlign(int i, AsciiBlock block) throws Exception {
     if (i < 0 || i >= this.height()) {
       throw new Exception("Invalid row call: " + i);
     } // if
+
     if (i >= 0 && i < block.height()) {
       return block.row(i);
     } else {
@@ -116,10 +149,41 @@ public class HComp implements AsciiBlock {
     } // if/else
   } // topAlign(int, AsciiBlock)
 
+  /**
+   * Align a block to the center.
+   *
+   * @param i The row number.
+   *
+   * @param block The block to align.
+   *
+   * @return The center aligned row.
+   *
+   * @throws Exception if i is outside the range of valid rows.
+   */
   private String centerAlign(int i, AsciiBlock block) throws Exception {
-    return ""; // STUB
+    if (i < 0 || i >= this.height()) {
+      throw new Exception("Invalid row call: " + i);
+    } // if
+
+    int offset = (this.height() - block.height()) / 2;
+    if ((i >= 0 && i < offset) || (i >= offset + block.height() && i < this.height())) {
+      return " ".repeat(block.width());
+    } else {
+      return block.row(i - offset);
+    } // if/else
   } // centerAlign(int)
 
+  /**
+   * Align a block to the bottom.
+   *
+   * @param i The row number.
+   *
+   * @param block The block to align.
+   *
+   * @return The bottom aligned row.
+   *
+   * @throws Exception If i is outside the range of valid rows.
+   */
   private String bottomAlign(int i, AsciiBlock block) throws Exception {
     if (i < 0 || i >= this.height()) {
       throw new Exception("Invalid row call: " + i);
