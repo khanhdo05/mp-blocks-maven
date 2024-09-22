@@ -229,7 +229,19 @@ public class HComp implements AsciiBlock {
    *
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
+  @Override
   public boolean eqv(AsciiBlock other) {
-    return false; // STUB
+    return ((other instanceof HComp) && (this.eqv((HComp) other)));
   } // eqv(AsciiBlock)
+
+  /**
+   * Determine if another HComp is structurally equivalent to this HComp.
+   *
+   * @param other The HComp to compare to this HComp.
+   *
+   * @return true if the two blocks are structurally equivalent and false otherwise.
+   */
+  public boolean eqv(HComp other) {
+    return (this.align == other.align) && (Arrays.equals(this.blocks, other.blocks));
+  } // eqv(HComp)
 } // class HComp
