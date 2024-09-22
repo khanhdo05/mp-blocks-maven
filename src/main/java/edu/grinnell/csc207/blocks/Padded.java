@@ -4,7 +4,7 @@ package edu.grinnell.csc207.blocks;
  * A padded ASCII block.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Alexander Pollock
  */
 public class Padded implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -92,10 +92,10 @@ public class Padded implements AsciiBlock {
 
     if (this.valign.equals(VAlignment.TOP)) {
       highestRow = 0;
-      lowestRow = this.block.height()-1;
+      lowestRow = this.block.height() - 1;
     } else if (this.valign.equals(VAlignment.CENTER)) {
       highestRow = (this.height() - this.block.height()) / 2;
-      lowestRow = highestRow + this.block.height()-1;
+      lowestRow = highestRow + this.block.height() - 1;
     } else {
       lowestRow = this.height();
       highestRow = lowestRow - this.block.height();
@@ -155,11 +155,9 @@ public class Padded implements AsciiBlock {
   /**
    * Determine if another padded is structurally equivalent to this padded.
    *
-   * @param other
-   *   The padded to compare to this padded.
+   * @param other The padded to compare to this padded.
    *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(Padded other) {
     return (this.valign == other.valign) && (this.halign == other.halign)

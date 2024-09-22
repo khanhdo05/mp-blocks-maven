@@ -82,11 +82,9 @@ public class VFlip implements AsciiBlock {
   /**
    * Determine if another VFlip is structurally equivalent to this VFlip.
    *
-   * @param other
-   *   The VFlip to compare to this VFlip.
+   * @param other The VFlip to compare to this VFlip.
    *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(VFlip other) {
     return this.block == other.block;

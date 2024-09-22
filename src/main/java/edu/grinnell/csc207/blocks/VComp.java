@@ -67,26 +67,27 @@ public class VComp implements AsciiBlock {
   public String row(int i) throws Exception {
     if (i < 0 || i >= this.height()) {
       throw new Exception("Out of bounds");
-    }
+    } // if
     int blockNum = 0;
     int n = 0;
     int lineInBlock = 0;
     while (n != i) {
       n++;
       lineInBlock++;
-      if (lineInBlock >= this.blocks[blockNum].height()){
+      if (lineInBlock >= this.blocks[blockNum].height()) {
         lineInBlock = 0;
         blockNum++;
       } // if
     } // while
     String toPrint = this.blocks[blockNum].row(lineInBlock);
     if (this.align.equals(HAlignment.LEFT)) {
-      return toPrint + " ".repeat(this.width()-this.blocks[blockNum].width());
+      return toPrint + " ".repeat(this.width() - this.blocks[blockNum].width());
     } // if
     if (this.align.equals(HAlignment.RIGHT)) {
       return " ".repeat(this.width() - this.blocks[blockNum].width()) + toPrint;
     } // if
-    return " ".repeat(((this.width() - this.blocks[blockNum].width()) + 1) / 2) + toPrint + " ".repeat((this.width() - this.blocks[blockNum].width()) / 2);
+    return " ".repeat(((this.width() - this.blocks[blockNum].width()) + 1) / 2) + toPrint
+        + " ".repeat((this.width() - this.blocks[blockNum].width()) / 2);
   } // row(int)
 
   /**
@@ -132,15 +133,13 @@ public class VComp implements AsciiBlock {
   /**
    * Determine if another VComp is structurally equivalent to this VComp.
    *
-   * @param other
-   *   The VComp to compare to this VComp.
+   * @param other The VComp to compare to this VComp.
    *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(VComp other) {
-    for (int i = 0; i<blocks.length;i++){
-      if (this.blocks[i] != other.blocks[i]){
+    for (int i = 0; i < blocks.length; i++) {
+      if (this.blocks[i] != other.blocks[i]) {
         return false;
       } // if
     } // for

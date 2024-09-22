@@ -20,8 +20,8 @@ import java.io.PrintWriter;
  * Experiments with ASCII blocks.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
- * @author Your Name Here
+ * @author Alexander Pollock
+ * @author Khanh Do
  */
 public class Blocks {
   /**
@@ -118,7 +118,8 @@ public class Blocks {
         """));
     figure(pen, "Using a string with newlines", new Lines("alpha\nbeta\ngamma\ndelta\nepsilon"));
 
-    figure(pen, "VFlip 1:", new VFlip(new Lines(new String[] {"this", "and", "that", "or", "whatever"})));
+    figure(pen, "VFlip 1:",
+        new VFlip(new Lines(new String[] {"this", "and", "that", "or", "whatever"})));
 
     separator(pen);
     pen.println("Fun with horizontal composition");
