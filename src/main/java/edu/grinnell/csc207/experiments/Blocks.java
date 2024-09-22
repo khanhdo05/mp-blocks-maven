@@ -8,6 +8,7 @@ import edu.grinnell.csc207.blocks.Line;
 import edu.grinnell.csc207.blocks.Lines;
 import edu.grinnell.csc207.blocks.Rect;
 import edu.grinnell.csc207.blocks.VComp;
+import edu.grinnell.csc207.blocks.VFlip;
 import edu.grinnell.csc207.blocks.VAlignment;
 import edu.grinnell.csc207.blocks.Surrounded;
 import edu.grinnell.csc207.blocks.Grid;
@@ -115,6 +116,8 @@ public class Blocks {
         Java 13
         """));
     figure(pen, "Using a string with newlines", new Lines("alpha\nbeta\ngamma\ndelta\nepsilon"));
+
+    figure(pen, "VFlip 1:", new VFlip(new Lines(new String[] {"this", "and", "that", "or", "whatever"})));
 
     separator(pen);
     pen.println("Fun with horizontal composition");
