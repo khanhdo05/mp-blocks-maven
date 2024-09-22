@@ -64,8 +64,65 @@ public class HComp implements AsciiBlock {
    * @exception Exception if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
-    return ""; // STUB
+    switch (this.align) {
+      case TOP:
+        return getAlignedRow(i, VAlignment.TOP);
+      case CENTER:
+        return getAlignedRow(i, VAlignment.CENTER);
+      case BOTTOM:
+        return getAlignedRow(i, VAlignment.BOTTOM);
+      default:
+        throw new Exception("Invalid alignment");
+    } // switch
   } // row(int)
+
+  private String getAlignedRow(int i, VAlignment alignment) throws Exception {
+    StringBuilder rowBuilder = new StringBuilder();
+    for (AsciiBlock block : this.blocks) {
+      rowBuilder.append(applyAlignment(i, alignment, block));
+    } // for
+    return rowBuilder.toString();
+  }
+
+  private String applyAlignment(int i, VAlignment alignment, AsciiBlock block) throws Exception {
+    switch (alignment) {
+      case TOP:
+        return topAlign(i, block);
+      case CENTER:
+        return centerAlign(i, block);
+      case BOTTOM:
+        return bottomAlign(i, block);
+      default:
+        throw new Exception("Invalid alignment");
+    } // switch
+  }
+
+  /**
+   * Align two blocks to the top.
+   *
+   * @param i The row number.
+   * @param left The left block.
+   * @param right The right block.
+   * @return
+   */
+  private String topAlign(int i, AsciiBlock block) throws Exception {
+    if (i < 0 || i >= this.height()) {
+      throw new Exception("Invalid row call: " + i);
+    } // if
+    if (i >= 0 && i < block.height()) {
+      return block.row(i);
+    } else {
+      return " ".repeat(block.width());
+    } // if/else
+  } // topAlign(int, AsciiBlock)
+
+  private String centerAlign(int i, AsciiBlock block) {
+    return ""; // STUB
+  } // centerAlign(int)
+
+  private String bottomAlign(int i, AsciiBlock block) {
+    return ""; // STUB
+  } // bottomAlign(int)
 
   /**
    * Determine how many rows are in the block.
