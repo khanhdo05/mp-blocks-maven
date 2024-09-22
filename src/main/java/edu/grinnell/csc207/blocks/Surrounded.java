@@ -4,7 +4,7 @@ package edu.grinnell.csc207.blocks;
  * A text block surrounded by a single letter.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Alex Pollock and Khanh Do
  */
 public class Surrounded implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -54,7 +54,13 @@ public class Surrounded implements AsciiBlock {
    *   If the row is invalid.
    */
   public String row(int i) throws Exception {
-    throw new Exception("Not yet implemented"); // STUB
+    if (i<0||i>=this.height()){
+      throw new Exception("Invalid row call");
+    } // if
+    if (i == 0 || i == this.height() - 1) {
+      return this.surroundChar.repeat(this.width()); 
+    } // if
+    return (this.surroundChar + this.contents.row(i-1) + this.surroundChar);
   } // row(int)
 
   /**
@@ -63,7 +69,7 @@ public class Surrounded implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    return this.contents.height() + 2;
   } // height()
 
   /**
@@ -72,7 +78,7 @@ public class Surrounded implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    return this.contents.width() + 2;
   } // width()
 
   /**
@@ -85,6 +91,28 @@ public class Surrounded implements AsciiBlock {
    *    false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return ((other instanceof Surrounded) && (this.eqv((Surrounded) other)));
   } // eqv(AsciiBlock)
+
+  /**
+   * Determine if another block is structurally equivalent to this block.
+   *
+   * @param other
+   *   The block to compare to this block.
+   *
+   * @return true if the two blocks are structurally equivalent and
+   *    false otherwise.
+   */
+  public boolean eqv(Surrounded other) {
+    for (int i = 0; i < this.height(); i++) {
+      try {
+        if (!(this.row(i).equals(other.row(i)))) {
+          return false;
+        } // if
+      } catch (Exception e) {
+        return false;
+      } // try
+    } // for
+    return true;
+  } // eqv(Surrounded)
 } // class Surrounded

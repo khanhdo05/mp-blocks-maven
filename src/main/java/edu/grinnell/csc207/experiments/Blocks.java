@@ -9,6 +9,8 @@ import edu.grinnell.csc207.blocks.Lines;
 import edu.grinnell.csc207.blocks.Rect;
 import edu.grinnell.csc207.blocks.VComp;
 import edu.grinnell.csc207.blocks.VAlignment;
+import edu.grinnell.csc207.blocks.Surrounded;
+import edu.grinnell.csc207.blocks.Grid;
 
 import java.io.PrintWriter;
 
@@ -62,6 +64,14 @@ public class Blocks {
     AsciiBlock boxedLine = new Boxed(line);
     AsciiBlock boxedboxedLine = new Boxed(boxedLine);
     AsciiBlock boxedExes = new Boxed(exes);
+
+    AsciiBlock surrounded = new Surrounded(boxedExes, 'x');
+    AsciiBlock surrounded2 = new Surrounded(boxedExes, 'c');
+    figure(pen, "Surrounded",  surrounded);
+    pen.println("Equals: " + surrounded.eqv(surrounded2));
+
+    AsciiBlock grid1 = new Grid(line, 3, 4);
+    figure(pen, "Grid",  grid1);
 
     pen.println("Original Values");
     figure(pen, "line", line);
