@@ -6,6 +6,7 @@ import edu.grinnell.csc207.blocks.HAlignment;
 import edu.grinnell.csc207.blocks.HComp;
 import edu.grinnell.csc207.blocks.Line;
 import edu.grinnell.csc207.blocks.Lines;
+import edu.grinnell.csc207.blocks.Padded;
 import edu.grinnell.csc207.blocks.Rect;
 import edu.grinnell.csc207.blocks.VComp;
 import edu.grinnell.csc207.blocks.VFlip;
@@ -149,6 +150,7 @@ public class Blocks {
     figure(pen, "Left composition",
         new VComp(HAlignment.RIGHT, new AsciiBlock[] {v1, v7, v11, v19}));
 
+    figure(pen, "Padding 1", new Padded(exes, '.', HAlignment.CENTER, VAlignment.BOTTOM, 5, 5));
 
     pen.close();
   } // main(String[])
