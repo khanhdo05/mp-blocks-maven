@@ -116,12 +116,20 @@ public class HComp implements AsciiBlock {
     } // if/else
   } // topAlign(int, AsciiBlock)
 
-  private String centerAlign(int i, AsciiBlock block) {
+  private String centerAlign(int i, AsciiBlock block) throws Exception {
     return ""; // STUB
   } // centerAlign(int)
 
-  private String bottomAlign(int i, AsciiBlock block) {
-    return ""; // STUB
+  private String bottomAlign(int i, AsciiBlock block) throws Exception {
+    if (i < 0 || i >= this.height()) {
+      throw new Exception("Invalid row call: " + i);
+    } // if
+    int offset = this.height() - block.height();
+    if (i >= 0 && i < offset) {
+      return " ".repeat(block.width());
+    } else {
+      return block.row(i - offset);
+    } // if/else
   } // bottomAlign(int)
 
   /**
