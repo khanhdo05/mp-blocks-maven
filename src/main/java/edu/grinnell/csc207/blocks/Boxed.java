@@ -36,8 +36,7 @@ public class Boxed implements AsciiBlock {
   /**
    * Build a new block with the specified contents.
    *
-   * @param blockContents
-   *   The contents of the block.
+   * @param blockContents The contents of the block.
    */
   public Boxed(AsciiBlock blockContents) {
     this.contents = blockContents;
@@ -54,8 +53,7 @@ public class Boxed implements AsciiBlock {
    *
    * @return row i.
    *
-   * @exception Exception
-   *   if the row is invalid
+   * @exception Exception if the row is invalid
    */
   public String row(int i) throws Exception {
     int h = this.contents.height();
@@ -94,24 +92,20 @@ public class Boxed implements AsciiBlock {
   /**
    * Determine if another block is structurally equivalent to this block.
    *
-   * @param other
-   *   The block to compare to this block.
+   * @param other The block to compare to this block.
    *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return ((other instanceof Boxed) && (this.eqv((Boxed) other)));
   } // eqv(AsciiBlock)
 
   /**
    * Determine if another Boxed is structurally equivalent to this block.
    *
-   * @param other
-   *   The block to compare to this block.
+   * @param other The block to compare to this block.
    *
-   * @return true if the two blocks are structurally equivalent and
-   *     false otherwise.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(Boxed other) {
     return this.contents.eqv(other.contents);
