@@ -27,17 +27,13 @@ public class Rect implements AsciiBlock {
   /**
    * Build a rectangle.
    *
-   * @param ch
-   *   The character from which we build the rectangle.
+   * @param ch The character from which we build the rectangle.
    *
-   * @param rectWidth
-   *   The width of the rectangle.
+   * @param rectWidth The width of the rectangle.
    *
-   * @param rectHeight
-   *   The height of the rectangle.
+   * @param rectHeight The height of the rectangle.
    */
-  public Rect(char ch, int rectWidth, int rectHeight)
-      throws Exception {
+  public Rect(char ch, int rectWidth, int rectHeight) throws Exception {
     // Sanity check
     if (rectWidth <= 0) {
       throw new Exception("Rectangle width must be positive");
@@ -60,8 +56,7 @@ public class Rect implements AsciiBlock {
    *
    * @return row i.
    *
-   * @exception Exception
-   *   if i is outside the range of valid rows.
+   * @exception Exception if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
     if ((i < 0) || (i >= this.height())) {
@@ -91,15 +86,24 @@ public class Rect implements AsciiBlock {
   /**
    * Determine if another block is structurally equivalent to this block.
    *
-   * @param other
-   *   The block to compare to this block.
+   * @param other The block to compare to this block.
    *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return ((other instanceof Rect) && (this.eqv((Rect) other)));
   } // eqv(AsciiBlock)
+
+  /**
+   * Determine if another Rect is structurally equivalent to this Rect.
+   *
+   * @param other The Rect to compare to this Rect.
+   *
+   * @return true if the two blocks are structurally equivalent and false.
+   */
+  public boolean eqv(Rect other) {
+    return (this.row.equals(other.row)) && (this.height == other.height);
+  } // eqv(Rect)
 
   // +---------------+-----------------------------------------------
   // | Other methods |
