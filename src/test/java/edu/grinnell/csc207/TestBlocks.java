@@ -1350,7 +1350,7 @@ public class TestBlocks {
     assertEquals(0, empty.width(),
         "E: Correct width for vertical composition of one empty");
     assertEquals(0, empty.height(),
-        "E: Correct height for vertical composition of one empty");
+       "E: Correct height for vertical composition of one empty");
 
     AsciiBlock nothing = new VComp(HAlignment.CENTER, new AsciiBlock[] { });
     assertEquals(0, nothing.width(),

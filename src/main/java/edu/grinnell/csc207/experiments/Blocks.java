@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import edu.grinnell.csc207.blocks.AsciiBlock;
 import edu.grinnell.csc207.blocks.Boxed;
+import edu.grinnell.csc207.blocks.Empty;
 import edu.grinnell.csc207.blocks.Grid;
 import edu.grinnell.csc207.blocks.HAlignment;
 import edu.grinnell.csc207.blocks.HComp;
@@ -16,6 +17,7 @@ import edu.grinnell.csc207.blocks.Surrounded;
 import edu.grinnell.csc207.blocks.Trimmed;
 import edu.grinnell.csc207.blocks.VAlignment;
 import edu.grinnell.csc207.blocks.VComp;
+import edu.grinnell.csc207.blocks.VFlip;
 
 /**
  * Experiments with ASCII blocks.
@@ -164,6 +166,18 @@ public class Blocks {
 
     figure(pen, "Padding 1", new Padded(exes, '.', HAlignment.CENTER, VAlignment.BOTTOM, 5, 5));
 
+
+    AsciiBlock helloworld =
+          new VComp(HAlignment.LEFT, new Line("Hello"), new Line("World"));
+    AsciiBlock  goodbye = new Line("Goodbye");
+    AsciiBlock empty = new VComp(HAlignment.LEFT, new AsciiBlock[] { new Empty() });
+    AsciiBlock block = new VComp(HAlignment.LEFT,
+        new AsciiBlock[] { new Empty(), helloworld, new Empty(), helloworld,
+            new Empty(), goodbye, new Empty(), new Empty() });
+    
+    figure(pen, "Padding 1", block);
+
+    pen.println(empty);
     pen.close();
   } // main(String[])
 } // class Blocks

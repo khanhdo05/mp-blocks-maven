@@ -68,9 +68,13 @@ public class VComp implements AsciiBlock {
     if (i < 0 || i >= this.height()) {
       throw new Exception("Out of bounds");
     } // if
+
     int blockNum = 0;
     int n = 0;
     int lineInBlock = 0;
+    while (this.blocks[blockNum].height()==0){
+      blockNum++;
+    } // while
     while (n != i) {
       n++;
       lineInBlock++;
@@ -78,6 +82,9 @@ public class VComp implements AsciiBlock {
         lineInBlock = 0;
         blockNum++;
       } // if
+      if (this.blocks[blockNum].height() == 0){
+        n--;
+      }
     } // while
     String toPrint = this.blocks[blockNum].row(lineInBlock);
     if (this.align.equals(HAlignment.LEFT)) {
@@ -86,8 +93,8 @@ public class VComp implements AsciiBlock {
     if (this.align.equals(HAlignment.RIGHT)) {
       return " ".repeat(this.width() - this.blocks[blockNum].width()) + toPrint;
     } // if
-    return " ".repeat(((this.width() - this.blocks[blockNum].width()) + 1) / 2) + toPrint
-        + " ".repeat((this.width() - this.blocks[blockNum].width()) / 2);
+    return " ".repeat(((this.width() - this.blocks[blockNum].width())) / 2) + toPrint
+        + " ".repeat((this.width() - this.blocks[blockNum].width() + 1) / 2);
   } // row(int)
 
   /**
