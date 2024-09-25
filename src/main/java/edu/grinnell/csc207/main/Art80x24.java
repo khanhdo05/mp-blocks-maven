@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 /**
  * Create and print an amazing 80x24 ASCII artwork.
  *
- * @author Your Name Here
+ * @author Alex Pollock
  * @author Your Name Here
  */
 public class Art80x24 {
@@ -23,7 +23,7 @@ public class Art80x24 {
    */
   public static void main(String[] args) throws Exception {
     PrintWriter pen = new PrintWriter(System.out, true);
-    AsciiBlock art = new Rect('^', 80, 24);
+    AsciiBlock art = new Rect('.', 20, 10);
     AsciiBlock.print(pen, art);
     pen.close();
   } // main(String[])
