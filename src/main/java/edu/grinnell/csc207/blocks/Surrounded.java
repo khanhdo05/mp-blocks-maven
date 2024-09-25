@@ -97,15 +97,6 @@ public class Surrounded implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(Surrounded other) {
-    for (int i = 0; i < this.height(); i++) {
-      try {
-        if (!(this.row(i).equals(other.row(i)))) {
-          return false;
-        } // if
-      } catch (Exception e) {
-        return false;
-      } // try
-    } // for
-    return true;
+    return (this.contents.eqv(other.contents) && this.surroundChar.equals(other.surroundChar));
   } // eqv(Surrounded)
 } // class Surrounded
