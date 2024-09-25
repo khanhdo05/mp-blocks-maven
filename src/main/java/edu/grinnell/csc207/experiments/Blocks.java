@@ -134,16 +134,11 @@ public class Blocks {
     figure(pen, "b", b);
     figure(pen, "c", c);
 
-    figure(pen, "Top composition",
-        new HComp(VAlignment.TOP, new AsciiBlock[] {a, b, c}));
-    figure(pen, "Center composition",
-        new HComp(VAlignment.CENTER, new AsciiBlock[] {a, b, c}));
-    figure(pen, "Bottom composition",
-        new HComp(VAlignment.BOTTOM, new AsciiBlock[] {a, b, c}));
-    figure(pen, "HFlip",
-        new HFlip(new HComp(VAlignment.TOP, new AsciiBlock[] {a, b, c})));
-    figure(pen, "Trimmed",
-        new Trimmed(d, HAlignment.LEFT, VAlignment.TOP, 4, 2));
+    figure(pen, "Top composition", new HComp(VAlignment.TOP, new AsciiBlock[] {a, b, c}));
+    figure(pen, "Center composition", new HComp(VAlignment.CENTER, new AsciiBlock[] {a, b, c}));
+    figure(pen, "Bottom composition", new HComp(VAlignment.BOTTOM, new AsciiBlock[] {a, b, c}));
+    figure(pen, "HFlip", new HFlip(new HComp(VAlignment.TOP, new AsciiBlock[] {a, b, c})));
+    figure(pen, "Trimmed", new Trimmed(d, HAlignment.LEFT, VAlignment.TOP, 4, 2));
 
 
     separator(pen);
@@ -167,14 +162,12 @@ public class Blocks {
     figure(pen, "Padding 1", new Padded(exes, '.', HAlignment.CENTER, VAlignment.BOTTOM, 5, 5));
 
 
-    AsciiBlock helloworld =
-          new VComp(HAlignment.LEFT, new Line("Hello"), new Line("World"));
-    AsciiBlock  goodbye = new Line("Goodbye");
-    AsciiBlock empty = new VComp(HAlignment.LEFT, new AsciiBlock[] { new Empty() });
-    AsciiBlock block = new VComp(HAlignment.LEFT,
-        new AsciiBlock[] { new Empty(), helloworld, new Empty(), helloworld,
-            new Empty(), goodbye, new Empty(), new Empty() });
-    
+    AsciiBlock helloworld = new VComp(HAlignment.LEFT, new Line("Hello"), new Line("World"));
+    AsciiBlock goodbye = new Line("Goodbye");
+    AsciiBlock empty = new VComp(HAlignment.LEFT, new AsciiBlock[] {new Empty()});
+    AsciiBlock block = new VComp(HAlignment.LEFT, new AsciiBlock[] {new Empty(), helloworld,
+        new Empty(), helloworld, new Empty(), goodbye, new Empty(), new Empty()});
+
     figure(pen, "Padding 1", block);
 
     pen.println(empty);

@@ -72,7 +72,7 @@ public class VComp implements AsciiBlock {
     int blockNum = 0;
     int n = 0;
     int lineInBlock = 0;
-    while (this.blocks[blockNum].height()==0){
+    while (this.blocks[blockNum].height() == 0) {
       blockNum++;
     } // while
     while (n != i) {
@@ -82,9 +82,9 @@ public class VComp implements AsciiBlock {
         lineInBlock = 0;
         blockNum++;
       } // if
-      if (this.blocks[blockNum].height() == 0){
+      if (this.blocks[blockNum].height() == 0) {
         n--;
-      }
+      } // if
     } // while
     String toPrint = this.blocks[blockNum].row(lineInBlock);
     if (this.align.equals(HAlignment.LEFT)) {
