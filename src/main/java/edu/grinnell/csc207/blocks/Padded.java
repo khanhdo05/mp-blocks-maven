@@ -4,7 +4,7 @@ package edu.grinnell.csc207.blocks;
  * A padded ASCII block.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Alexander Pollock
  */
 public class Padded implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -48,21 +48,15 @@ public class Padded implements AsciiBlock {
   /**
    * Build a new block with the specified contents.
    *
-   * @param original
-   *   The original block.
-   * @param ch
-   *   The character we use for padding.
-   * @param horiz
-   *   How the original block is horizontally aligned within the padding.
-   * @param vert
-   *   How the original block is vertically aligned within the padding.
-   * @param paddedWidth
-   *   The width of the padded block.
-   * @param paddedHeight
-   *   The height of the padded block.
+   * @param original The original block.
+   * @param ch The character we use for padding.
+   * @param horiz How the original block is horizontally aligned within the padding.
+   * @param vert How the original block is vertically aligned within the padding.
+   * @param paddedWidth The width of the padded block.
+   * @param paddedHeight The height of the padded block.
    */
-  public Padded(AsciiBlock original, char ch, HAlignment horiz,
-      VAlignment vert, int paddedWidth, int paddedHeight) {
+  public Padded(AsciiBlock original, char ch, HAlignment horiz, VAlignment vert, int paddedWidth,
+      int paddedHeight) {
     this.block = original;
     this.pad = new String(new char[] {ch});
     this.halign = horiz;
@@ -82,11 +76,50 @@ public class Padded implements AsciiBlock {
    *
    * @return row i.
    *
-   * @exception Exception
-   *   If the row is invalid.
+   * @exception Exception If the row is invalid.
    */
   public String row(int i) throws Exception {
-    throw new Exception("Not yet implemented"); // STUB
+    if (i < 0 || i >= this.height) {
+      throw new Exception("Invalid Row Number");
+    } // if
+    if (this.height < this.block.height() || this.width < this.block.width()) {
+      throw new Exception("Original Block is too Large");
+    } // if
+    int highestRow = 0;
+    int lowestRow = 0;
+    int leftCol = 0;
+    int rightCol = 0;
+
+    if (this.valign.equals(VAlignment.TOP)) {
+      highestRow = 0;
+      lowestRow = this.block.height() - 1;
+    } else if (this.valign.equals(VAlignment.CENTER)) {
+      highestRow = (this.height() - this.block.height()) / 2;
+      lowestRow = highestRow + this.block.height() - 1;
+    } else {
+      lowestRow = this.height();
+      highestRow = lowestRow - this.block.height();
+    } // else
+
+    if (this.halign.equals(HAlignment.LEFT)) {
+      leftCol = 0;
+      rightCol = this.block.width();
+    } else if (this.halign.equals(HAlignment.CENTER)) {
+      leftCol = (this.width() - this.block.width()) / 2;
+      rightCol = leftCol + this.block.width();
+    } else {
+      rightCol = this.width();
+      leftCol = rightCol - this.block.width();
+    } // else
+
+    String toPrint = "";
+    if (i >= highestRow && i <= lowestRow) {
+      toPrint = this.block.row(i - highestRow);
+    } // if
+    return this.pad.repeat(leftCol) + toPrint
+        + this.pad.repeat(this.width - rightCol + (this.block.width() - toPrint.length()));
+
+
   } // row(int)
 
   /**
@@ -95,7 +128,7 @@ public class Padded implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    return this.height;
   } // height()
 
   /**
@@ -104,19 +137,30 @@ public class Padded implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    return this.width;
   } // width()
 
   /**
    * Determine if another block is structurally equivalent to this block.
    *
-   * @param other
-   *   The block to compare to this block.
+   * @param other The block to compare to this block.
    *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return ((other instanceof Padded) && (this.eqv((Padded) other)));
   } // eqv(AsciiBlock)
+
+
+  /**
+   * Determine if another padded is structurally equivalent to this padded.
+   *
+   * @param other The padded to compare to this padded.
+   *
+   * @return true if the two blocks are structurally equivalent and false otherwise.
+   */
+  public boolean eqv(Padded other) {
+    return (this.valign == other.valign) && (this.halign == other.halign)
+        && (this.block.eqv(other.block));
+  } // eqv(Padded)
 } // class Padded
