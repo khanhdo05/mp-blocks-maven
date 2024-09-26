@@ -89,6 +89,7 @@ public class Grid implements AsciiBlock {
    *
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
+  @Override
   public boolean eqv(AsciiBlock other) {
     return ((other instanceof Grid) && (this.eqv((Grid) other)));
   } // eqv(AsciiBlock)
@@ -101,7 +102,7 @@ public class Grid implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(Grid other) {
-    return (this.hreps == other.hreps) && (this.vreps == other.hreps)
-        && (this.element.eqv(other.element));
+    return (this.hreps == other.hreps) && (this.vreps == other.vreps)
+        && (other.element.eqv(this.element));
   } // eqv(Grid)
 } // class Grid
