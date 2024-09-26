@@ -74,6 +74,7 @@ public class VFlip implements AsciiBlock {
    *
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
+  @Override
   public boolean eqv(AsciiBlock other) {
     return ((other instanceof VFlip) && (this.eqv((VFlip) other)));
   } // eqv(AsciiBlock)
@@ -87,6 +88,6 @@ public class VFlip implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(VFlip other) {
-    return this.block == other.block;
+    return (this.block.eqv(other.block));
   } // eqv(VFlip)
 } // class VFlip

@@ -90,6 +90,7 @@ public class Rect implements AsciiBlock {
    *
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
+  @Override
   public boolean eqv(AsciiBlock other) {
     return ((other instanceof Rect) && (this.eqv((Rect) other)));
   } // eqv(AsciiBlock)

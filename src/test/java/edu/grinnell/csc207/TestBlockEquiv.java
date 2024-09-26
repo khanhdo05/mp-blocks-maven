@@ -1,5 +1,9 @@
 package edu.grinnell.csc207;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
 import edu.grinnell.csc207.blocks.AsciiBlock;
 import edu.grinnell.csc207.blocks.Boxed;
 import edu.grinnell.csc207.blocks.Empty;
@@ -15,11 +19,6 @@ import edu.grinnell.csc207.blocks.Trimmed;
 import edu.grinnell.csc207.blocks.VAlignment;
 import edu.grinnell.csc207.blocks.VComp;
 import edu.grinnell.csc207.blocks.VFlip;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Tests of the equivalence of various ASCII blocks.
@@ -79,7 +78,7 @@ public class TestBlockEquiv {
 
   /** Rects, B side. */
   static AsciiBlock[] exesRectsB =
-    new AsciiBlock[] {exesRect0b };
+    new AsciiBlock[] {exesRect0b};
 
   // +----------------+----------------------------------------------
   // | Exes with Grid |
@@ -109,7 +108,7 @@ public class TestBlockEquiv {
 
   /** Grids, B side. */
   static AsciiBlock[] exesGridsB =
-      new AsciiBlock[] {exesGrid0b, null, null, null };
+      new AsciiBlock[] {exesGrid0b, exesGrid1b, exesGrid2a, exesGrid3a };
 
   // +-----------------+---------------------------------------------
   // | Exes with HComp |

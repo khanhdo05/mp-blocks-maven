@@ -242,6 +242,11 @@ public class HComp implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(HComp other) {
-    return (this.align == other.align) && (Arrays.equals(this.blocks, other.blocks));
+    for (int i = 0; i < blocks.length; i++) {
+      if (this.blocks[i] != other.blocks[i]) {
+        return false;
+      } // if
+    } // for
+    return other.align == this.align;
   } // eqv(HComp)
 } // class HComp
